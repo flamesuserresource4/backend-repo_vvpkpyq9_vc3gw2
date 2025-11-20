@@ -11,7 +11,7 @@ Model name is converted to lowercase for the collection name:
 - BlogPost -> "blogs" collection
 """
 
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, HttpUrl
 from typing import Optional
 
 # Example schemas (replace with your own):
@@ -56,3 +56,13 @@ class ChatMessage(BaseModel):
     """
     name: str = Field(..., min_length=2, max_length=60, description="Zobrazované meno")
     content: str = Field(..., min_length=1, max_length=500, description="Text správy")
+
+class VideoItem(BaseModel):
+    """
+    Video items for the public gallery
+    Collection: "videoitem"
+    """
+    title: str = Field(..., min_length=2, max_length=140, description="Názov videa")
+    url: str = Field(..., description="URL na video (YouTube, MP4 alebo iné externé umiestnenie)")
+    thumbnail: Optional[str] = Field(None, description="Náhľadový obrázok (URL)")
+    description: Optional[str] = Field(None, max_length=500, description="Krátky popis videa")

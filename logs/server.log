@@ -1,32 +1,40 @@
 INFO:     Will watch for changes in these directories: ['/home/workspace']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [122] using StatReload
-INFO:     Started server process [124]
+INFO:     Started reloader process [214] using StatReload
+INFO:     Started server process [216]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     172.20.0.1:37314 - "GET /api/sport-wages HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37338 - "GET /api/pension-reform HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37314 - "GET /api/sport-wages HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37338 - "GET /api/pension-reform HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37340 - "HEAD / HTTP/1.1" 405 Method Not Allowed
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/sport-wages HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/pension-reform HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38460 - "GET /api/sport-wages HTTP/1.1" 200 OK
-INFO:     172.20.0.1:37324 - "GET /api/pension-reform HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
-INFO:     172.20.0.1:38458 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35346 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35346 - "GET /api/videos HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35346 - "GET /api/sport-wages HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35356 - "GET /api/pension-reform HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35370 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35346 - "GET /api/sport-wages HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35356 - "GET /api/pension-reform HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35370 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/videos HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35394 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35388 - "GET /api/sport-wages HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/videos HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35388 - "GET /api/pension-reform HTTP/1.1" 200 OK
+INFO:     172.20.0.1:57952 - "GET /api/sport-wages HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35388 - "GET /api/pension-reform HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:57962 - "GET /api/videos HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35384 - "GET /api/chat?limit=30 HTTP/1.1" 200 OK

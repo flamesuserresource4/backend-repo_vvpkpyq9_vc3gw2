@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from database import db, create_document, get_documents
-from schemas import ContactMessage, ChatMessage
+from schemas import ContactMessage, ChatMessage, VideoItem
 
 app = FastAPI(title="Ivan Noskovič - Profil politika API")
 
@@ -94,6 +94,30 @@ def post_chat_message(msg: ChatMessage):
     try:
         _id = create_document("chatmessage", msg)
         return {"status": "ok", "id": _id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Videá: jednoduché CRUD (bez auth) – ukladá URL, názov, popis a thumbnail
+@app.get("/api/videos", response_model=List[VideoItem])
+def list_videos(limit: int = 50):
+    try:
+        docs = get_documents("videoitem", {}, limit)
+        return [
+            VideoItem(
+                title=d.get("title", ""),
+                url=d.get("url", ""),
+                thumbnail=d.get("thumbnail"),
+                description=d.get("description")
+            ) for d in docs
+        ]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/videos")
+def create_video(item: VideoItem):
+    try:
+        vid = create_document("videoitem", item)
+        return {"status": "ok", "id": vid}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
