@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import List, Optional
+from datetime import datetime
 from database import db, create_document, get_documents
 from schemas import ContactMessage, ChatMessage, VideoItem
 
@@ -111,14 +112,21 @@ def post_chat_message(msg: ChatMessage):
 def list_videos(limit: int = 50):
     try:
         docs = get_documents("videoitem", {}, limit)
-        return [
-            VideoItem(
+        items: List[VideoItem] = []
+        for d in docs:
+            created_at = d.get("created_at")
+            if isinstance(created_at, datetime):
+                created_iso = created_at.isoformat()
+            else:
+                created_iso = str(created_at) if created_at else None
+            items.append(VideoItem(
                 title=d.get("title", ""),
                 url=d.get("url", ""),
                 thumbnail=d.get("thumbnail"),
-                description=d.get("description")
-            ) for d in docs
-        ]
+                description=d.get("description"),
+                created_at=created_iso
+            ))
+        return items
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
