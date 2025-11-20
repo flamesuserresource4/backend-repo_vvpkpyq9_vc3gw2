@@ -1,8 +1,11 @@
 import os
-from fastapi import FastAPI, HTTPException
+import uuid
+from pathlib import Path
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from database import db, create_document, get_documents
 from schemas import ContactMessage, ChatMessage, VideoItem
 
@@ -15,6 +18,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Nastavenie adresára pre uploady
+BASE_DIR = Path(__file__).parent
+UPLOAD_DIR = BASE_DIR / "uploads" / "videos"
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+# Sprístupni statické súbory
+app.mount("/uploads", StaticFiles(directory=BASE_DIR / "uploads"), name="uploads")
 
 @app.get("/")
 def read_root():
@@ -78,7 +88,6 @@ def post_contact(msg: ContactMessage):
 def get_chat_messages(limit: int = 30):
     try:
         docs = get_documents("chatmessage", {}, limit)
-        # Premapovanie ObjectId a systémových polí
         cleaned = []
         for d in docs:
             cleaned.append({
@@ -118,6 +127,34 @@ def create_video(item: VideoItem):
     try:
         vid = create_document("videoitem", item)
         return {"status": "ok", "id": vid}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Upload videa (multipart/form-data)
+@app.post("/api/videos/upload")
+def upload_video(title: str = Form(...), description: Optional[str] = Form(None), file: UploadFile = File(...)):
+    try:
+        # Bezpečný názov súboru
+        ext = Path(file.filename).suffix.lower()
+        if ext not in {".mp4", ".mov", ".webm", ".mkv", ".avi"}:
+            raise HTTPException(status_code=400, detail="Podporované formáty: mp4, mov, webm, mkv, avi")
+        safe_name = f"{uuid.uuid4().hex}{ext}"
+        dest_path = UPLOAD_DIR / safe_name
+        with dest_path.open("wb") as f:
+            f.write(file.file.read())
+        # URL cestu vraciame relatívne voči backendu
+        url_path = f"/uploads/videos/{safe_name}"
+        # Ulož do DB
+        payload = {
+            "title": title,
+            "url": url_path,
+            "description": description or "",
+            "thumbnail": None,
+        }
+        _id = create_document("videoitem", payload)
+        return {"status": "ok", "id": _id, "item": payload}
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
